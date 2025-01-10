@@ -314,6 +314,21 @@ section {
   margin: auto 0;
 }
 
+.section__profile-container {
+  display: inline-block;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 300px; /* Bigger size */
+  height: 300px; /* Match width for a perfect circle */
+  margin: auto 0;
+}
+
+.circular-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 /* EXPERIENCE SECTION */
 
 #experience {
@@ -338,7 +353,7 @@ section {
   text-align: initial;
   flex-wrap: wrap;
   flex-direction: row;
-  gap: 2.5rem;
+  gap: 1.5rem;
   justify-content: space-around;
 }
 
