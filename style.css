@@ -283,6 +283,10 @@ section {
   display: flex;
 }
 
+.text-container {
+  text-align: justify;
+}
+
 .about-pic {
   border-radius: 2rem;
 }
