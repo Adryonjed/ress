@@ -206,6 +206,7 @@ section {
 
 .section-container {
   display: flex;
+  
 }
 
 .section-top-container {
@@ -255,6 +256,13 @@ section {
 }
 
 .section__text__p1 {
+  position: sticky;
+  top: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 1rem;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow */
   text-align: center;
 }
 
@@ -373,6 +381,8 @@ section {
 .section-container {
   gap: 4rem;
   height: 80%;
+  position: relative;
+  max-height: 100vh; /* Adjust height as needed */
 }
 
 .section__pic-container {

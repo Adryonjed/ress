@@ -10,6 +10,9 @@
   #projects {
     height: fit-content;
   }
+  section {
+    margin: 0 10%;
+  }
 }
 
 @media screen and (max-width: 1200px) {
@@ -35,7 +38,7 @@
     height: fit-content;
   }
   section {
-    margin: 0 5%;
+    margin: 0 0%;
   }
   .section__pic-container {
     width: 275px;
