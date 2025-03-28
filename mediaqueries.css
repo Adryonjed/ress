@@ -11,13 +11,14 @@
     height: fit-content;
   }
   section {
-    margin: 0 10%;
+    margin: 0 5%;
   }
 }
 
 @media screen and (max-width: 1200px) {
   #desktop-nav {
     display: none;
+    
   }
   #hamburger-nav {
     display: flex;
@@ -102,5 +103,11 @@
   }
   .text-container {
     text-align: justify;
+  }
+}
+
+@media (max-width: 768px) {
+  #dark-mode-toggle-mobile {
+    font-size: 24px; /* Ensure icon size stays consistent */
   }
 }

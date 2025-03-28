@@ -19,9 +19,7 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
-    <div id="dark-mode-toggle" class="logo" style="cursor: pointer;">
-            🌙
-          </div>
+    
   </nav>
 
   <nav id="hamburger-nav">
@@ -33,21 +31,31 @@
         <span></span>
       </div>
       <div class="menu-links">
-        <li><a href="#about" onclick="toggleMenu()">About</a></li>
-        <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-        <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-        <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        <li><a data-section="#about" onclick="toggleMenu(event)">About</a></li>
+        <li><a data-section="#experience" onclick="toggleMenu(event)">Experience</a></li>
+        <li><a data-section="#projects" onclick="toggleMenu(event)">Projects</a></li>
+        <li><a data-section="#contact" onclick="toggleMenu(event)">Contact</a></li>
       </div>
       
     </div>
     
-    <button id="dark-mode-toggle-mobile">🌙</button>
+    
 
   </nav>
 
         </div>
       </div>
     </nav>
+
+  
+
+
+<div class="tab-container">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchPortfolio('developer')">Software Developer</button>
+    <button class="tab-btn" onclick="switchPortfolio('editor')">Photo & Video Editor</button>
+    <div id="dark-mode-toggle" class="logo2" style="cursor: pointer; ">🌙</div>
+  </div>
 
   <script>
   const toggles = document.querySelectorAll("#dark-mode-toggle, #dark-mode-toggle-mobile");
@@ -68,13 +76,6 @@
   // Add event listeners to all toggles
   toggles.forEach(toggle => toggle.addEventListener("click", toggleDarkMode));
 </script>
-
-
-<div class="tab-container">
-  <div class="tabs">
-    <button class="tab-btn active" onclick="switchPortfolio('developer')">Software Developer</button>
-    <button class="tab-btn" onclick="switchPortfolio('editor')">Photo & Video Editor</button>
-  </div>
 
   <div id="developer-portfolio" class="portfolio-content active">
     <section id="profile">

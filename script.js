@@ -1,34 +1,58 @@
 function toggleMenu(event) {
-  const menu = document.querySelector(".menu-links");
-  const icon = document.querySelector(".hamburger-icon");
+  const menuLinks = document.querySelectorAll('.menu-links a');
+  const activePortfolio = document.querySelector('.portfolio-content.active');
 
-  // Check if the event is triggered by the dark mode toggle button
-  if (event.target.id === "dark-mode-toggle") {
-    const body = document.body;
+  // Ensure the active portfolio exists
+  if (!activePortfolio) return;
 
-    // Toggle dark mode class
-    body.classList.toggle("dark-mode");
+  // Add event listeners to menu links
+  menuLinks.forEach((link) => {
+    const sectionId = link.getAttribute('data-section'); // Use the custom data-section attribute
+    if (sectionId) {
+      const targetSection = activePortfolio.querySelector(sectionId);
+      if (targetSection) {
+        // Scroll to the target section within the active portfolio
+        link.addEventListener('click', (e) => {
+          e.preventDefault(); // Prevent default anchor behavior
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        });
+      }
+    }
+  });
 
-    // Save the user's preference to localStorage
-    const currentTheme = body.classList.contains("dark-mode")
-      ? "dark"
-      : "light";
-    localStorage.setItem("theme", currentTheme);
-
-    return; // Stop further execution to avoid affecting the menu
-  }
-
-  // Toggle menu for other triggers
-  menu.classList.toggle("open");
-  icon.classList.toggle("open");
+  // Toggle the menu visibility (for mobile)
+  const menu = document.querySelector('.menu-links');
+  menu.classList.toggle('open');
+  if (event) event.stopPropagation();
 }
 
 // Restore dark mode based on localStorage preference
-document.addEventListener("DOMContentLoaded", () => {
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "dark") {
-    document.body.classList.add("dark-mode");
-  }
+document.addEventListener('DOMContentLoaded', () => {
+  const tabs = document.querySelectorAll('.tab-btn');
+  const contents = document.querySelectorAll('.portfolio-content');
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+      // Add fade-out class to the currently active content
+      const activeContent = document.querySelector('.portfolio-content.active');
+      if (activeContent) {
+        activeContent.classList.add('fade-out');
+
+        // Wait for the fade-out animation to complete before switching
+        setTimeout(() => {
+          activeContent.classList.remove('active', 'fade-out');
+          contents[index].classList.add('active');
+        }, 300); // Match this duration to your CSS transition time
+      } else {
+        // If no active content, directly activate the new one
+        contents[index].classList.add('active');
+      }
+
+      // Update active tab button
+      tabs.forEach((t) => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
 });
 
 function switchPortfolio(portfolioType) {

@@ -45,6 +45,8 @@ p {
   transition: transform 0.2s, background-color 0.3s;
   background-color: transparent; /* Default transparent background */
   border: none; /* Remove any default border */
+  
+  
 }
 
 body.dark-mode #dark-mode-toggle-mobile {
@@ -52,11 +54,6 @@ body.dark-mode #dark-mode-toggle-mobile {
   color: #ffffff; /* White color for icon */
 }
 
-@media (max-width: 768px) {
-  #dark-mode-toggle-mobile {
-    font-size: 24px; /* Ensure icon size stays consistent */
-  }
-}
 
 /* TRANSITION */
 
@@ -70,12 +67,15 @@ a,
 nav,
 .nav-links {
   display: flex;
+ 
+
 }
 
 nav {
   justify-content: space-around;
   align-items: center;
   height: 17vh;
+  
 }
 
 .nav-links {
@@ -100,6 +100,15 @@ a:hover {
 .logo {
   font-size: 2rem;
 }
+
+.logo2 {
+  font-size: 3rem;
+  position: absolute; 
+  right:  30px;
+  bottom: -13px;
+
+}
+
 
 .logo:hover {
   cursor: default;
@@ -197,7 +206,6 @@ a:hover {
 /* SECTIONS */
 
 section {
-  padding-top: 4vh;
   height: 96vh;
   margin: 0 10rem;
   box-sizing: border-box;
@@ -220,7 +228,7 @@ section {
   display: flex;
   justify-content: center;
   gap: 5rem;
-  height: 80vh;
+  height: 20vh;
 }
 
 .section__profile-container {
@@ -257,13 +265,14 @@ section {
 
 .section__text__p1 {
   position: sticky;
-  top: 0;
+  top: 55px;
   background-color: var(--background-color);
   color: var(--text-color);
-  padding: 1rem;
-  z-index: 10;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow */
+  transition: all 0.3 ease-in-out;
+  padding: 1rem;  
+  z-index: 99;
   text-align: center;
+  padding: 10px;
 }
 
 .section__text__p2 {
@@ -565,6 +574,12 @@ p {
   display: flex;
   justify-content: center;
   gap: 10px;
+  position: sticky; /* Makes it sticky *//* Adjust distance from the top */ /* Adjust distance from the right */
+  z-index: 100;
+  top: 0;
+  background: var(--background-color);
+  transition: all 0.3 ease-in-out;
+  padding: 10px;
 }
 
 .tab-btn {
@@ -586,6 +601,10 @@ p {
 .tab-btn.active {
   background-color: #3f6d9e;
   color: white;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .portfolio-content {
