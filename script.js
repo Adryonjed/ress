@@ -1,102 +1,82 @@
 function toggleMenu(event) {
-  const menuLinks = document.querySelectorAll('.menu-links a');
-  const activePortfolio = document.querySelector('.portfolio-content.active');
+  const menu = document.querySelector(".menu-links");
+  const icon = document.querySelector(".hamburger-icon");
 
-  // Ensure the active portfolio exists
-  if (!activePortfolio) return;
+  if (event.target.id === "dark-mode-toggle") {
+    const body = document.body;
+    body.classList.toggle("dark-mode");
+    const currentTheme = body.classList.contains("dark-mode")
+      ? "dark"
+      : "light";
+    localStorage.setItem("theme", currentTheme);
+    return;
+  }
 
-  // Add event listeners to menu links
-  menuLinks.forEach((link) => {
-    const sectionId = link.getAttribute('data-section'); // Use the custom data-section attribute
-    if (sectionId) {
-      const targetSection = activePortfolio.querySelector(sectionId);
-      if (targetSection) {
-        // Scroll to the target section within the active portfolio
-        link.addEventListener('click', (e) => {
-          e.preventDefault(); // Prevent default anchor behavior
-          targetSection.scrollIntoView({ behavior: 'smooth' });
-        });
-      }
-    }
-  });
-
-  // Toggle the menu visibility (for mobile)
-  const menu = document.querySelector('.menu-links');
-  menu.classList.toggle('open');
-  if (event) event.stopPropagation();
+  menu.classList.toggle("open");
+  icon.classList.toggle("open");
 }
 
-// Restore dark mode based on localStorage preference
-document.addEventListener('DOMContentLoaded', () => {
-  const tabs = document.querySelectorAll('.tab-btn');
-  const contents = document.querySelectorAll('.portfolio-content');
+function handleAnchorLinks() {
+  // Handle regular anchor links
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute("href");
+      const activePortfolio = document.querySelector(
+        ".portfolio-content.active"
+      );
+      const targetSection = activePortfolio.querySelector(targetId);
+
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  });
+
+  // Handle arrow navigation
+  document.querySelectorAll(".icon.arrow").forEach((arrow) => {
+    arrow.addEventListener("click", function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute("onclick").match(
+        /location\.href='\.\/(.*?)'/
+      )[1];
+      const activePortfolio = document.querySelector(
+        ".portfolio-content.active"
+      );
+      const targetSection = activePortfolio.querySelector(targetId);
+
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") document.body.classList.add("dark-mode");
+
+  const tabs = document.querySelectorAll(".tab-btn");
+  const contents = document.querySelectorAll(".portfolio-content");
+
+  handleAnchorLinks();
 
   tabs.forEach((tab, index) => {
-    tab.addEventListener('click', () => {
-      // Add fade-out class to the currently active content
-      const activeContent = document.querySelector('.portfolio-content.active');
+    tab.addEventListener("click", () => {
+      const activeContent = document.querySelector(".portfolio-content.active");
       if (activeContent) {
-        activeContent.classList.add('fade-out');
-
-        // Wait for the fade-out animation to complete before switching
+        activeContent.classList.add("fade-out");
         setTimeout(() => {
-          activeContent.classList.remove('active', 'fade-out');
-          contents[index].classList.add('active');
-        }, 300); // Match this duration to your CSS transition time
+          activeContent.classList.remove("active", "fade-out");
+          contents[index].classList.add("active");
+          handleAnchorLinks(); // Reinitialize after content switch
+        }, 300);
       } else {
-        // If no active content, directly activate the new one
-        contents[index].classList.add('active');
+        contents[index].classList.add("active");
       }
 
-      // Update active tab button
-      tabs.forEach((t) => t.classList.remove('active'));
-      tab.classList.add('active');
+      tabs.forEach((t) => t.classList.remove("active"));
+      tab.classList.add("active");
     });
   });
 });
-
-function switchPortfolio(portfolioType) {
-  // Get the currently active portfolio content
-  const activePortfolio = document.querySelector(".portfolio-content.active");
-
-  // If there's an active portfolio, apply fade-out transition and move left
-  if (activePortfolio) {
-    activePortfolio.classList.remove("active");
-    activePortfolio.classList.add("fade-out");
-  }
-
-  // Remove active class from all buttons
-  const buttons = document.querySelectorAll(".tab-btn");
-  buttons.forEach((btn) => btn.classList.remove("active"));
-
-  // Apply transition to the selected tab
-  const selectedButton = document.querySelector(
-    `.tab-btn[onclick="switchPortfolio('${portfolioType}')"]`
-  );
-  selectedButton.classList.add("active");
-
-  // Show selected portfolio with fade-in effect and left to right transition
-  const selectedPortfolio = document.getElementById(
-    `${portfolioType}-portfolio`
-  );
-
-  // Reset the content to trigger the transition again
-  selectedPortfolio.classList.remove("active");
-  setTimeout(() => {
-    selectedPortfolio.classList.add("active");
-  }, 10); // Adding a small delay to allow the class removal to take effect
-
-  // Remove the fade-out class once the previous content is fully hidden
-  setTimeout(() => {
-    const fadeOutPortfolios = document.querySelectorAll(
-      ".portfolio-content.fade-out"
-    );
-    fadeOutPortfolios.forEach((portfolio) =>
-      portfolio.classList.remove("fade-out")
-    );
-  }, 300); // Matches the fade transition duration
-}
-
-
-
-

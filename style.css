@@ -45,8 +45,6 @@ p {
   transition: transform 0.2s, background-color 0.3s;
   background-color: transparent; /* Default transparent background */
   border: none; /* Remove any default border */
-  
-  
 }
 
 body.dark-mode #dark-mode-toggle-mobile {
@@ -54,6 +52,32 @@ body.dark-mode #dark-mode-toggle-mobile {
   color: #ffffff; /* White color for icon */
 }
 
+@media (max-width: 768px) {
+  #dark-mode-toggle-mobile {
+    font-size: 24px; /* Ensure icon size stays consistent */
+  }
+}
+
+/* Sticky Dark Mode Button */
+#dark-mode-toggle,
+#dark-mode-toggle-mobile {
+  position: sticky;
+  top: 10px; /* Sticks near the top of the viewport */
+  z-index: 1000; /* Ensures it stays above other elements */
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: 0px solid var(--border-color);
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#dark-mode-toggle:hover,
+#dark-mode-toggle-mobile:hover {
+  background-color: var(--btn-hover);
+  color: var(--background-color);
+}
 
 /* TRANSITION */
 
@@ -67,15 +91,12 @@ a,
 nav,
 .nav-links {
   display: flex;
- 
-
 }
 
 nav {
   justify-content: space-around;
   align-items: center;
   height: 17vh;
-  
 }
 
 .nav-links {
@@ -100,15 +121,6 @@ a:hover {
 .logo {
   font-size: 2rem;
 }
-
-.logo2 {
-  font-size: 3rem;
-  position: absolute; 
-  right:  30px;
-  bottom: -13px;
-
-}
-
 
 .logo:hover {
   cursor: default;
@@ -206,6 +218,7 @@ a:hover {
 /* SECTIONS */
 
 section {
+  padding-top: 4vh;
   height: 96vh;
   margin: 0 10rem;
   box-sizing: border-box;
@@ -214,7 +227,6 @@ section {
 
 .section-container {
   display: flex;
-  
 }
 
 .section-top-container {
@@ -228,7 +240,7 @@ section {
   display: flex;
   justify-content: center;
   gap: 5rem;
-  height: 20vh;
+  height: 80vh;
 }
 
 .section__profile-container {
@@ -268,7 +280,7 @@ section {
   top: 55px;
   background-color: var(--background-color);
   color: var(--text-color);
-  transition: all 0.3 ease-in-out;
+  transition: background-color 0.3s ease, color 0.3s ease;
   padding: 1rem;  
   z-index: 99;
   text-align: center;
@@ -570,6 +582,12 @@ p {
   margin: 20px 0;
 }
 
+/* Sticky Tab Container */
+.tab-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
 .tabs {
   display: flex;
   justify-content: center;
@@ -578,10 +596,9 @@ p {
   z-index: 100;
   top: 0;
   background: var(--background-color);
-  transition: all 0.3 ease-in-out;
+  transition: background-color 0.3s ease, color 0.3s ease;
   padding: 10px;
 }
-
 .tab-btn {
   background-color: #f0f0f0;
   border: none;
@@ -603,10 +620,6 @@ p {
   color: white;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 .portfolio-content {
   opacity: 0;
   transform: translateX(-20px); /* Start from the left */
@@ -626,10 +639,12 @@ html {
   display: block; /* Keep the content block but fade it out */
 }
 
+.portfolio-content:not(.active) {
+  display: none;
+}
+
 .tab-btn.active {
   background-color: #3f6d9e;
   color: white;
   transform: scale(1.05); /* Optional: Add a slight scaling effect when active */
 }
-
-
