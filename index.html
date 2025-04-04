@@ -13,14 +13,14 @@
   <nav id="desktop-nav">
     <div class="logo">Welcome to my Portfolio!</div>
     <div>
-      <ul class="nav-links">
+      <ul class="nav-links" style="margin-left: 600px;">
         <li><a href="#about">About</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
-    <div id="dark-mode-toggle" class="logo" style="cursor: pointer;">🌙</div>
+    <div id="dark-mode-toggle" class="logo" style="cursor: pointer; margin-left: 50px;">🌙</div>
   </nav>
 
   <!-- Mobile Navigation -->
@@ -33,42 +33,45 @@
         <span></span>
       </div>
       <div class="menu-links">
+        <div class="menu-right">
+          <button id="dark-mode-toggle-mobile">🌙</button>
+        </div>
         <li><a href="#about" onclick="toggleMenu()">About</a></li>
         <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
         <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
         <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
       </div>
     </div>
-    <button id="dark-mode-toggle-mobile">🌙</button>
+    
   </nav>
 
-  <!-- Dark Mode Toggle Script -->
-  <script>
-    const toggles = document.querySelectorAll("#dark-mode-toggle, #dark-mode-toggle-mobile");
-    const body = document.body;
-
-    // Apply saved theme preference
-    const isDarkMode = localStorage.getItem("theme") === "dark";
-    body.classList.toggle("dark-mode", isDarkMode);
-    toggles.forEach(toggle => toggle.textContent = isDarkMode ? "☀️" : "🌙");
-
-    // Toggle dark mode with animation
-    const toggleDarkMode = () => {
-      const isDarkMode = body.classList.toggle("dark-mode");
-      localStorage.setItem("theme", isDarkMode ? "dark" : "light");
-      toggles.forEach(toggle => toggle.textContent = isDarkMode ? "☀️" : "🌙");
-    };
-
-    // Add event listeners to all toggles
-    toggles.forEach(toggle => toggle.addEventListener("click", toggleDarkMode));
-  </script>
-
-  <!-- Portfolio Tabs -->
-  <div class="tab-container">
-    <div class="tabs">
-      <button class="tab-btn active">Software Developer</button>
-      <button class="tab-btn">Photo & Video Editor</button>
+  <input type="checkbox" id="theme-mode" class="mode" hidden="" />
+  <div class="container">
+    <div class="wrap">
+      <input
+        checked=""
+        type="radio"
+        id="rd-1"
+        name="radio"
+        class="rd-1"
+        hidden=""
+      />
+      <label for="rd-1" class="label" style="--index: 0;"
+        ><span>Developer</span></label
+      >
+  
+      <input type="radio" id="rd-2" name="radio" class="rd-2" hidden="" />
+      <label for="rd-2" class="label" style="--index: 1;"
+        ><span>Editor</span></label
+      >
+  
+  
+      <div class="bar"></div>
+      <div class="slidebar"></div>
     </div>
+  </div>
+
+    
 
     <!-- Developer Portfolio -->
     <div id="developer-portfolio" class="portfolio-content active">
@@ -87,11 +90,11 @@
           </div>
         </div>
         <div class="section__text">
-          <p class="section__text__p1">Hello, I'm</p>
+          <p class="section__text__p">Hello, I'm</p>
           <h1 class="title btn-shine">Jed Adryon Fernandez</h1>
           <p class="section__text__p2">Software Developer</p>
           <div class="btn-container">
-            <button class="animated-button" onclick="window.open('./assets/Fernandez_Resume.pdf')">
+            <button class="animated-button" onclick="window.open('./assets/Fernandez_CV.pdf')">
               <span>Download CV</span>
                 <span></span>
             </button>
@@ -114,12 +117,12 @@
           <div class="about-details-container">
             <div class="about-containers">
               <div class="details-container">
-                <img src="./assets/experience.png" alt="Experience icon" class="icon" />
+                <img src="./assets/experience.png" alt="Experience icon" class="icon exp-icon" />
                 <h3>Experience</h3>
                 <p>6+ Months <br />Software Development</p>
               </div>
               <div class="details-container">
-                <img src="./assets/graduation.png" alt="Education icon" class="icon" />
+                <img src="./assets/graduation.png" alt="Education icon" class="icon edu-icon" />
                 <h3>Education</h3>
                 <p>B.Sc. Information Technology</p>
               </div>
@@ -137,7 +140,7 @@
             </div>
           </div>
         </div>
-        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#experience'" />
+        <img src="./assets/arrow.png" alt="Arrow icon " class="icon arrow arr-icon" onclick="location.href='./#experience'" />
       </section>
 
       <!-- Experience Section -->
@@ -228,7 +231,7 @@
             </div>
           </div>
         </div>
-        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#projects'" />
+        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow arr-icon" onclick="location.href='./#projects'" />
       </section>
 
       <!-- Projects Section -->
@@ -281,7 +284,7 @@
             </div>
           </div>
         </div>
-        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#contact'" />
+        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow arr-icon" onclick="location.href='./#contact'" />
       </section>
 
       <!-- Contact Section -->
@@ -334,12 +337,12 @@
           </div>
         </div>
         <div class="section__text">
-          <p class="section__text__p1">Hello, I'm</p>
-          <h1 class="title">Jed Adryon Fernandez</h1>
+          <p class="section__text__p">Hello, I'm</p>
+          <h1 class="title btn-shine">Jed Adryon Fernandez</h1>
           <p class="section__text__p2">Photo & Video Editor</p>
           <div class="btn-container">
-            <button class="animated-button" onclick="window.open('./assets/Fernandez_Resume.pdf')">
-              <span>Download CV</span>
+            <button class="animated-button" onclick="window.open('./assets/Fernandez_CV.pdf')">
+                <span>Download CV</span>
                 <span></span>
             </button>
           </div>
@@ -361,12 +364,12 @@
           <div class="about-details-container">
             <div class="about-containers">
               <div class="details-container">
-                <img src="./assets/experience.png" alt="Experience icon" class="icon" />
+                <img src="./assets/experience.png" alt="Experience icon" class="icon exp-icon" />
                 <h3>Experience</h3>
                 <p>5 years <br />as Video Editor</p>
               </div>
               <div class="details-container">
-                <img src="./assets/graduation.png" alt="Education icon" class="icon" />
+                <img src="./assets/graduation.png" alt="Education icon" class="icon edu-icon" />
                 <h3>Education</h3>
                 <p>B.Sc. Information Technology</p>
               </div>
@@ -381,7 +384,7 @@
             </div>
           </div>
         </div>
-        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#experience'" />
+        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow arr-icon" onclick="location.href='./#experience'" />
       </section>
 
       <!-- Experience Section -->
@@ -458,7 +461,7 @@
             </div>
           </div>
         </div>
-        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#projects'" />
+        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow arr-icon" onclick="location.href='./#projects'" />
       </section>
 
       <!-- Projects Section -->
@@ -511,7 +514,7 @@
             </div>
           </div>
         </div>
-        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#contact'" />
+        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow arr-icon" onclick="location.href='./#contact'" />
       </section>
 
       <!-- Contact Section -->
@@ -547,6 +550,7 @@
       <script src="script.js"></script>
     </div>
   </div>
+  
 </body>
 </html>
 
