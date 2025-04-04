@@ -243,20 +243,71 @@ section {
   height: 80vh;
 }
 
+/* Profile Container - Maintains original position */
+/* Profile Container - Maintains original position */
 .section__profile-container {
-  display: flex;
-  border-radius: 50%;
-  overflow: hidden;
-  width: 300px; /* Bigger size */
-  height: 300px; /* Match width for a perfect circle */
-  margin: auto 0;
+  perspective: 1000px;
+  width: 300px;
+  height: 300px;
+  margin: auto 0; /* Matches your original layout */
+  position: relative;
+  display: flex; /* Ensures proper centering */
+  justify-content: center; /* Horizontal center */
 }
 
+/* Flipper Container */
+.profile-flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease; /* Matches your timing */
+  transform-style: preserve-3d;
+  border-radius: 50%; /* Ensures circular shape */
+}
+
+/* Hover effect */
+.section__profile-container:hover .profile-flipper {
+  transform: rotateY(180deg);
+}
+
+/* Front and Back faces */
+.profile-front, .profile-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex; /* For centering content */
+  align-items: center; /* Vertical center */
+  justify-content: center; /* Horizontal center */
+}
+
+/* Back face initial position */
+.profile-back {
+  transform: rotateY(180deg);
+}
+
+/* Image styling - matches your original */
 .circular-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  margin: auto 0;
+  margin: auto 0; /* Maintains your original image position */
+}
+
+/* Developer back content */
+#developer-portfolio .profile-back {
+  background-color: #f3f4f6;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Editor back content */
+#editor-portfolio .profile-back {
+  background-color: #1f2937;
+  color: white;
+  font-weight: bold;
 }
 
 .section__pic-container {
