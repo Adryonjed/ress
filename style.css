@@ -364,6 +364,58 @@ section {
 
 /* BUTTONS */
 
+/* From Uiverse.io by gharsh11032000 */ 
+.animated-button {
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  border: none;
+  font-size: 16px;
+  background-color: inherit;
+  border-radius: 100px;
+  font-weight: 600;
+  color: #201e1e97;
+  box-shadow: 0 0 0 2px #00000098;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.animated-button span:last-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: #2196F3;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.animated-button span:first-child {
+  position: relative;
+  z-index: 1;
+}
+
+.animated-button:hover {
+  box-shadow: 0 0 0 5px #2195f360;
+  color: #ffffff;
+}
+
+.animated-button:active {
+  scale: 0.95;
+}
+
+.animated-button:hover span:last-child {
+  width: 150px;
+  height: 150px;
+  opacity: 1;
+}
+
+
+
 .btn-container {
   display: flex;
   justify-content: center;
@@ -445,10 +497,11 @@ section {
   flex: 1;
   background: white;
   border-radius: 2rem;
-  border: rgb(53, 53, 53) 0.1rem solid;
-  border-color: rgb(163, 163, 163);
   text-align: center;
+  box-shadow: 20px 20px 15px 0 #ababab4d;
+  cursor: pointer;
 }
+
 
 .section-container {
   gap: 4rem;
@@ -607,6 +660,13 @@ p {
   border-color: var(--border-color);
 }
 
+.animated-button{
+  background: var(--background-color);
+  color: var(--text-color);
+  border-color: var(--border-color);
+  box-shadow: 0 0 0 2px var(--border-color);
+}
+
 .btn-color-1,
 .btn-color-2 {
   border-color: var(--border-color);
@@ -698,4 +758,43 @@ p {
   background-color: #3f6d9e;
   color: white;
   transform: scale(1.05); /* Optional: Add a slight scaling effect when active */
+}
+
+/* From Uiverse.io by neerajbaniwal */ 
+
+.btn-shine {
+  padding: 12px 48px;
+  color: #fff;
+  background: linear-gradient(
+    to right,
+    #9f9f9f 0%,
+    #9f9f9f 20%,
+    #fff 40%,
+    #9f9f9f 60%,
+    #9f9f9f 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  animation: shine 7s linear infinite;
+  animation-fill-mode: forwards;
+  -webkit-text-size-adjust: none;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: "Poppins", sans-serif;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 200% center; /* Start from left (hidden) */
+  }
+  40%, 80% {
+    background-position: 110% center; /* Sweep across and pause */
+  }
+  100% {
+    background-position: 0 center; /* Exit right (hidden) */
+  }
 }
