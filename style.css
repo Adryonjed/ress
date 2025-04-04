@@ -58,6 +58,27 @@ body.dark-mode #dark-mode-toggle-mobile {
   }
 }
 
+/* Sticky Dark Mode Button */
+#dark-mode-toggle,
+#dark-mode-toggle-mobile {
+  position: sticky;
+  top: 10px; /* Sticks near the top of the viewport */
+  z-index: 1000; /* Ensures it stays above other elements */
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: 0px solid var(--border-color);
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#dark-mode-toggle:hover,
+#dark-mode-toggle-mobile:hover {
+  background-color: var(--btn-hover);
+  color: var(--background-color);
+}
+
 /* TRANSITION */
 
 a,
@@ -222,20 +243,71 @@ section {
   height: 80vh;
 }
 
+/* Profile Container - Maintains original position */
+/* Profile Container - Maintains original position */
 .section__profile-container {
-  display: flex;
-  border-radius: 50%;
-  overflow: hidden;
-  width: 300px; /* Bigger size */
-  height: 300px; /* Match width for a perfect circle */
-  margin: auto 0;
+  perspective: 1000px;
+  width: 300px;
+  height: 300px;
+  margin: auto 0; /* Matches your original layout */
+  position: relative;
+  display: flex; /* Ensures proper centering */
+  justify-content: center; /* Horizontal center */
 }
 
+/* Flipper Container */
+.profile-flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease; /* Matches your timing */
+  transform-style: preserve-3d;
+  border-radius: 50%; /* Ensures circular shape */
+}
+
+/* Hover effect */
+.section__profile-container:hover .profile-flipper {
+  transform: rotateY(180deg);
+}
+
+/* Front and Back faces */
+.profile-front, .profile-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex; /* For centering content */
+  align-items: center; /* Vertical center */
+  justify-content: center; /* Horizontal center */
+}
+
+/* Back face initial position */
+.profile-back {
+  transform: rotateY(180deg);
+}
+
+/* Image styling - matches your original */
 .circular-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  margin: auto 0;
+  margin: auto 0; /* Maintains your original image position */
+}
+
+/* Developer back content */
+#developer-portfolio .profile-back {
+  background-color: #f3f4f6;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Editor back content */
+#editor-portfolio .profile-back {
+  background-color: #1f2937;
+  color: white;
+  font-weight: bold;
 }
 
 .section__pic-container {
@@ -255,7 +327,15 @@ section {
 }
 
 .section__text__p1 {
+  position: sticky;
+  top: 55px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 1rem;  
+  z-index: 99;
   text-align: center;
+  padding: 10px;
 }
 
 .section__text__p2 {
@@ -283,6 +363,58 @@ section {
 }
 
 /* BUTTONS */
+
+/* From Uiverse.io by gharsh11032000 */ 
+.animated-button {
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  border: none;
+  font-size: 16px;
+  background-color: inherit;
+  border-radius: 100px;
+  font-weight: 600;
+  color: #201e1e97;
+  box-shadow: 0 0 0 2px #00000098;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.animated-button span:last-child {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: #2196F3;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.animated-button span:first-child {
+  position: relative;
+  z-index: 1;
+}
+
+.animated-button:hover {
+  box-shadow: 0 0 0 5px #2195f360;
+  color: #ffffff;
+}
+
+.animated-button:active {
+  scale: 0.95;
+}
+
+.animated-button:hover span:last-child {
+  width: 150px;
+  height: 150px;
+  opacity: 1;
+}
+
+
 
 .btn-container {
   display: flex;
@@ -365,14 +497,17 @@ section {
   flex: 1;
   background: white;
   border-radius: 2rem;
-  border: rgb(53, 53, 53) 0.1rem solid;
-  border-color: rgb(163, 163, 163);
   text-align: center;
+  box-shadow: 20px 20px 15px 0 #ababab4d;
+  cursor: pointer;
 }
+
 
 .section-container {
   gap: 4rem;
   height: 80%;
+  position: relative;
+  max-height: 100vh; /* Adjust height as needed */
 }
 
 .section__pic-container {
@@ -525,6 +660,13 @@ p {
   border-color: var(--border-color);
 }
 
+.animated-button{
+  background: var(--background-color);
+  color: var(--text-color);
+  border-color: var(--border-color);
+  box-shadow: 0 0 0 2px var(--border-color);
+}
+
 .btn-color-1,
 .btn-color-2 {
   border-color: var(--border-color);
@@ -551,12 +693,23 @@ p {
   margin: 20px 0;
 }
 
+/* Sticky Tab Container */
+.tab-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
 .tabs {
   display: flex;
   justify-content: center;
   gap: 10px;
+  position: sticky; /* Makes it sticky *//* Adjust distance from the top */ /* Adjust distance from the right */
+  z-index: 100;
+  top: 0;
+  background: var(--background-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 10px;
 }
-
 .tab-btn {
   background-color: #f0f0f0;
   border: none;
@@ -597,10 +750,51 @@ p {
   display: block; /* Keep the content block but fade it out */
 }
 
+.portfolio-content:not(.active) {
+  display: none;
+}
+
 .tab-btn.active {
   background-color: #3f6d9e;
   color: white;
   transform: scale(1.05); /* Optional: Add a slight scaling effect when active */
 }
 
+/* From Uiverse.io by neerajbaniwal */ 
 
+.btn-shine {
+  padding: 12px 48px;
+  color: #fff;
+  background: linear-gradient(
+    to right,
+    #9f9f9f 0%,
+    #9f9f9f 20%,
+    #fff 40%,
+    #9f9f9f 60%,
+    #9f9f9f 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  animation: shine 7s linear infinite;
+  animation-fill-mode: forwards;
+  -webkit-text-size-adjust: none;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: "Poppins", sans-serif;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 200% center; /* Start from left (hidden) */
+  }
+  40%, 80% {
+    background-position: 110% center; /* Sweep across and pause */
+  }
+  100% {
+    background-position: 0 center; /* Exit right (hidden) */
+  }
+}
