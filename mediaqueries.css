@@ -18,6 +18,9 @@
   }
   #hamburger-nav {
     display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 2%;
   }
   #experience,
   .experience-details-container {
@@ -33,9 +36,8 @@
   section,
   .section-container {
     height: fit-content;
-  }
-  section {
-    margin: 0 5%;
+    margin: 0 5% !important; /* Override any other margins */
+    padding: 2rem 0 !important; /* Consistent padding */
   }
   .section__pic-container {
     width: 275px;
@@ -45,59 +47,132 @@
   .about-containers {
     margin-top: 0;
   }
+  /* Fix hamburger menu positioning */
+  .hamburger-menu {
+    margin-left: auto;
+    margin-right: 1rem;
+  }
 }
 
 @media screen and (max-width: 600px) {
+  /* Reset section margins and padding */
+  section {
+    margin: 0 !important;
+    padding: 2rem 5% !important;
+    height: auto;
+    min-height: 100vh;
+  }
+  
   #contact,
   footer {
-    height: 40vh;
+    height: auto;
+    min-height: 40vh;
+    padding: 2rem 5% !important;
   }
+  
   #profile {
-    height: 83vh;
+    height: auto;
+    min-height: 83vh;
     margin-bottom: 0;
+    padding: 2rem 5% !important;
+    gap: 2rem;
+    flex-direction: column;
   }
+  
   article {
     font-size: 1rem;
+    width: 100%;
   }
+  
   footer nav {
     height: fit-content;
     margin-bottom: 2rem;
   }
+  
   .about-containers,
   .contact-info-upper-container,
   .btn-container {
     flex-wrap: wrap;
   }
+  
   .contact-info-container {
     margin: 0;
   }
+  
   .contact-info-container p,
   .nav-links li a {
     font-size: 1rem;
   }
+  
   .experience-sub-title {
     font-size: 1.25rem;
   }
+  
   .logo {
     font-size: 1.5rem;
   }
+  
   .nav-links {
     flex-direction: column;
     gap: 0.5rem;
     text-align: center;
   }
+  
   .section__pic-container {
-    width: auto;
-    height: 46vw;
+    width: 250px;
+    height: 250px;
     justify-content: center;
   }
+  
   .section__text__p2 {
     font-size: 1.25rem;
   }
-  .title {
-    font-size: 2rem;
+  
+  .title, .btn-shine {
+    font-size: 1.5rem;
   }
+  
   .text-container {
     text-align: justify;
+  }
+  
+  /* Fix profile section layout */
+  .section__profile-container {
+    width: 250px;
+    height: 250px;
+    margin: 0 auto 2rem;
+  }
+  
+  /* Adjust dark mode toggle */
+  #dark-mode-toggle-mobile {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-left: auto;
+  }
+  
+  /* Fix hamburger menu */
+  .menu-links {
+    width: 100%;
+    right: 0;
+    left: 0;
+    padding: 1rem 0;
+  }
+  
+  /* Adjust section containers */
+  .section-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  /* Fix buttons */
+  .btn-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn {
+    width: 100%;
+    max-width: 200px;
   }
 }

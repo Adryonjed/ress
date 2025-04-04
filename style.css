@@ -817,6 +817,7 @@ p {
   text-decoration: none;
   white-space: nowrap;
   font-family: "Poppins", sans-serif;
+  text-align: center;
 }
 
 @keyframes shine {
