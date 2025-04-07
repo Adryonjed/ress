@@ -17,6 +17,17 @@
     display: none;
   }
 
+  #hamburger-nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 2%;
+  }
+
+  #dark-mode-toggle-mobile {
+    font-size: 50px;
+  }
+
   #experience,
   .experience-details-container {
     margin-top: 2rem;
