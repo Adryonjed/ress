@@ -16,12 +16,7 @@
   #desktop-nav {
     display: none;
   }
-  #hamburger-nav {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 0 2%;
-  }
+
   #experience,
   .experience-details-container {
     margin-top: 2rem;
@@ -37,7 +32,6 @@
   .section-container {
     height: fit-content;
     margin: 0 5% !important; /* Override any other margins */
-    padding: 2rem 0 !important; /* Consistent padding */
   }
   .section__pic-container {
     width: 275px;
@@ -53,12 +47,49 @@
     margin-right: 1rem;
   }
 }
+  .title, h1, h2 {
+    text-align: center;
+  }
 
-@media screen and (max-width: 600px) {
+
+@media screen and (max-width: 550px) {
   /* Reset section margins and padding */
+   html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  
+  
+  /* Constrain all sections */
+  section {
+    width: 100%;
+    max-width: 100%;
+    padding: 2rem 5%;
+    margin: 0;
+  }
+  
+  /* Ensure text containers don't overflow */
+  .text-container, .section__text {
+    width: 100%;
+  }
+  
+  /* Fix any absolutely positioned elements */
+  .btn-container, .title {
+    position: relative;
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+  
+  /* Constrain your profile section */
+  #profile {
+    width: 100%;
+    overflow: hidden;
+  }
+  
   section {
     margin: 0 !important;
-    padding: 2rem 5% !important;
     height: auto;
     min-height: 100vh;
   }
@@ -109,7 +140,8 @@
   }
   
   .logo {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    margin-left: 15px;
   }
   
   .nav-links {
@@ -131,6 +163,12 @@
   .title, .btn-shine {
     font-size: 1.5rem;
   }
+
+  .title {
+    text-align: center;
+    width: 100%;
+  }
+  
   
   .text-container {
     text-align: justify;
