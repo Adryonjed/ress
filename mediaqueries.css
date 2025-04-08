@@ -57,6 +57,16 @@
     margin-left: auto;
     margin-right: 1rem;
   }
+  .e-card {
+    width: 560px;
+    height: 130px;
+  }
+
+  .infotop {
+    font-size: 1rem;
+    margin: 0;
+    gap: 0.5rem;
+  }
 }
   .title, h1, h2 {
     text-align: center;
@@ -65,12 +75,39 @@
 
 @media screen and (max-width: 550px) {
   /* Reset section margins and padding */
-   html, body {
+  html, body {
     overflow-x: hidden;
     width: 100%;
   }
 
-  
+  .e-card {
+
+    width: 310px;
+    height: 130px;
+
+  }
+  .infotop {
+    font-size: 0.9rem;
+    margin: 0;
+    gap: 1rem;
+  }
+
+  .wave {
+  position: absolute;
+  width: 640px;
+  height: 800px;
+  opacity: 0.6;
+  left: 0;
+  top: -50%;
+  margin-left: -40%;
+  margin-top: -26%;
+  background: linear-gradient(744deg,#af40ff,#5b42f3 60%,#00ddeb);
+}
+
+.wave:nth-child(2),
+.wave:nth-child(3) {
+  top: 140px;
+}
   
   /* Constrain all sections */
   section {
@@ -135,15 +172,6 @@
   .contact-info-upper-container,
   .btn-container {
     flex-wrap: wrap;
-  }
-  
-  .contact-info-container {
-    margin: 0;
-  }
-  
-  .contact-info-container p,
-  .nav-links li a {
-    font-size: 1rem;
   }
   
   .experience-sub-title {
